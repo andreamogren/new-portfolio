@@ -1,12 +1,5 @@
 <template>
   <div id="app">
-    <nav>
-      <a href="https://comprend.com">ABC</a>
-      <a href="https://comprend.com">ABC</a>
-      <a href="https://comprend.com">ABC</a>
-      <a href="https://comprend.com">ABC</a>
-      <a href="https://comprend.com">ABC</a>
-    </nav>
     <HelloWorld/>
   </div>
 </template>
@@ -30,6 +23,7 @@ html {
 }
 
 body {
+  margin: 0;
   background-color: @bg;
   margin-top: 60px;
   color: #000;
@@ -42,13 +36,5 @@ body {
     margin: 0 auto;
     color: #FFF;
   }*/
-
-  nav {
-    text-align: center;
-
-    a {
-      padding: 1rem; 
-    }
-  }
 }
 </style>
