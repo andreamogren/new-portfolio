@@ -1,6 +1,6 @@
 <template>
     <div class="hello">
-      <nav ref="nav">
+      <nav ref="nav"> <!-- :class="{violet: scrollPosition > 60, blue: scrollPosition > 1932}" -->
         <a href="#hero" @click="this.violetHeading">Top</a>
         <a href="#skills" @click="blueHeading">Skills</a>
         <a href="#background" @click="greenHeading">Background</a>
@@ -92,6 +92,7 @@ export default {
     return {
       /*now: {},
       start: {},*/
+      scrollPosition: null,
     };
   },
   watch: {
@@ -103,7 +104,24 @@ export default {
       /*this.now = new Date(); //Hur få detta till ett år och få ut ett nummer?
       this.start = new Date(now.getFullYear(), 0, 0);*/
     },
-    violetHeading(){
+    /* https://stackoverflow.com/questions/41095814/vuejs-how-to-dynamically-change-a-css-class-after-a-scroll-position :D */
+    updateScroll(){
+      this.scrollPosition = window.scrollY;
+      console.log(this.scrollPosition);
+
+      if (this.scrollPosition < 60) {
+        this.$refs.nav.style.backgroundColor = "#8B00FF";
+      } else if (this.scrollPosition > 1932 && this.scrollPosition < 2140) {
+        this.$refs.nav.style.backgroundColor = "#0000FF";
+      } else if (this.scrollPosition > 2140 && this.scrollPosition < 3116) {
+        this.$refs.nav.style.backgroundColor = "#00FF00";
+      } else if (this.scrollPosition > 3116 && this.scrollPosition < 5410) {
+        this.$refs.nav.style.backgroundColor = "#FF7F00";
+      } else if (this.scrollPosition > 5410) {
+        this.$refs.nav.style.backgroundColor = "#FF0000";
+      }
+    },
+    /*violetHeading(){
       this.$refs.nav.style.color = "#8B00FF";
     },
     blueHeading (){
@@ -117,13 +135,13 @@ export default {
     },
     redHeading (){
         this.$refs.nav.style.color = "#FF0000";
-    },
+    },*/
     getScrollPosition() {
-      console.log(this.$refs.hero.offsetTop);
-      console.log(this.$refs.skills.offsetTop);
-      console.log(this.$refs.background.offsetTop);
-      console.log(this.$refs.who.offsetTop);
-      console.log(this.$refs.contact.offsetTop);
+      console.log("hero ", this.$refs.hero.offsetTop);
+      console.log("skills ", this.$refs.skills.offsetTop);
+      console.log("background ",this.$refs.background.offsetTop);
+      console.log("who ",this.$refs.who.offsetTop);
+      console.log("contact ",this.$refs.contact.offsetTop);
       //this.$refs.contact.style.color = "#000000";
     },
   },
@@ -131,6 +149,7 @@ export default {
   },
   mounted() {
       //this.getYear();
+      window.addEventListener('scroll', this.updateScroll);
       this.getScrollPosition();
   },
 };
@@ -196,9 +215,8 @@ footer {
 
   .shading {
     background-color: black;
-    filter: blur(100%);
     opacity: 0.3;
-    height: 100%;
+    height: 125vh;
     width: 100vw;
     position: absolute;
     top: 0;
