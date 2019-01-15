@@ -24,10 +24,12 @@ html {
 
 body {
   margin: 0;
-  background-color: @bg;
+  //background-color: @bg;
   margin-top: 60px;
-  color: #000;
+  //color: #000;
   font-family: 'Montserrat', sans-serif;
+  background-color: rgb(25, 27, 30);
+  color: rgb(232, 231, 227);
 
 
 /*  body {

@@ -90,8 +90,6 @@ export default {
   name: 'HelloWorld',
   data() {
     return {
-      /*now: {},
-      start: {},*/
       scrollPosition: null,
     };
   },
@@ -100,14 +98,9 @@ export default {
   props: {
   },
   methods: {
-    getYear() {
-      /*this.now = new Date(); //Hur få detta till ett år och få ut ett nummer?
-      this.start = new Date(now.getFullYear(), 0, 0);*/
-    },
     /* https://stackoverflow.com/questions/41095814/vuejs-how-to-dynamically-change-a-css-class-after-a-scroll-position :D */
     updateScroll(){
       this.scrollPosition = window.scrollY;
-      console.log(this.scrollPosition);
 
       if (this.scrollPosition < 60) {
         this.$refs.nav.style.backgroundColor = "#8B00FF";
@@ -121,34 +114,17 @@ export default {
         this.$refs.nav.style.backgroundColor = "#FF0000";
       }
     },
-    /*violetHeading(){
-      this.$refs.nav.style.color = "#8B00FF";
-    },
-    blueHeading (){
-      this.$refs.nav.style.color = "#0000FF";
-    },
-    greenHeading (){
-        this.$refs.nav.style.color = "#00FF00";
-    },
-    orangeHeading (){
-        this.$refs.nav.style.color = "#FF7F00";
-    },
-    redHeading (){
-        this.$refs.nav.style.color = "#FF0000";
-    },*/
     getScrollPosition() {
       console.log("hero ", this.$refs.hero.offsetTop);
       console.log("skills ", this.$refs.skills.offsetTop);
       console.log("background ",this.$refs.background.offsetTop);
       console.log("who ",this.$refs.who.offsetTop);
       console.log("contact ",this.$refs.contact.offsetTop);
-      //this.$refs.contact.style.color = "#000000";
     },
   },
   computed: {
   },
   mounted() {
-      //this.getYear();
       window.addEventListener('scroll', this.updateScroll);
       this.getScrollPosition();
   },
@@ -161,6 +137,7 @@ export default {
 
 html {
   font-size: 16px;
+  scroll-behavior: smooth;
 }
 
 h1, h3, p {
@@ -197,6 +174,8 @@ nav {
   a {
     color: #fff;
     padding: 1rem;
+    text-decoration: none;
+    font-size: 1.3rem;
   }
 }
 
@@ -205,6 +184,9 @@ footer {
   text-align: center;
   padding: 4rem 0;
   color: #FFF;
+}
+
+#hello {
 }
 
 #hero {
