@@ -38,28 +38,28 @@
           expert</p>
         <h1 id ="background" ref="background" class="green">Background</h1>
         <h3>Currently</h3>
-        <strong><p>2018 - </p></strong>
+        <strong><p class="no-margin-bottom">2018 - </p></strong>
         <p>I work as a front and developer, aspiring to become full stack, at <a href="https://www.comprend.com/" target="_blank" rel="noopener noreferrer">Comprend</a>. I work mostly with creating websites for clients
         in our own CMS called <a href="https://www.comprend.com/blog/2018/website-as-a-service-what-is-that/" target="_blank" rel="noopener noreferrer">WaaS</a>. For some clients, I am their contact person and as well as their developer. I participate in meetings where I take in their
         requests and give advice/time estimates from a technical standpoint. I also started working with the application for the CMS itself recently. </p>
         <p>Apart from working with development, I'm also interested in group dynamics and what makes a group work well together.
           I hold regularly hold team building exercises so that my team not only talk about what we do together, but also how we should do it.</p>
         <h3>Previously</h3>
-        <strong><p>2016 - 2018</p></strong>
+        <strong><p class="no-margin-bottom">2016 - 2018</p></strong>
         <p>In 2018, I graduated from Hyper Island where I studied the Digital Data Strategist program. This is where I learned basic HTML, CSS, JavaScript and also how to use optimization tools such as
            Google analytics and HotJar, about Search Engine Marketing, for example AdWords and how to properly use SEO, and lastly how to present yourself and your work.
            Everything I have and will learn comes with a data perspective, and how you can use data to your advantage.
            I’ve also learned a lot about group dynamics and how to create more effective teams.</p>
         <p>While studying, I did my internship at Comprend, learning a lot about front end development but also about back end.</p>
 
-        <strong><p>2012 - 2016</p></strong>
+        <strong><p class="no-margin-bottom">2012 - 2016</p></strong>
         <p>Before coming to Hyper, I worked as a freelance journalist at Oh My! and OP communication,
           where I've written many articles and interviewed a bunch of people. I also have a bachelor's
           degree in English linguistics from the Professional Language program at Stockholm University,
           where I studied English and Swedish linguistics with a focus on business communication.</p>
         <h1 id ="who" ref="who" class="orange">Who am I?</h1>
         <p>As a person, I am happy, organized, calm and I love all sorts of games (pc, video, board game, you name it).
-        I also love dogs, creating things (everything from web sites to scarfs), languages and tea. Especially green tea.</p>
+        I also love dogs, creating things (everything from web sites to scarfs), languages and tea. Especially green tea. 🍵</p>
         <h3>Me in GIFs:</h3>
         <div class="gif">
           <iframe src="https://giphy.com/embed/dBgUdHwD9kEQU" width="480" height="853" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/dBgUdHwD9kEQU"></a></p>
@@ -74,9 +74,9 @@
           <iframe src="https://giphy.com/embed/49B5kpre24clW" width="480" height="576" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="http://giphy.com/gifs/49B5kpre24clW"</a></p>
         </div>
         <h1 id="contact" ref="contact" class="red">Contact</h1>
-        <p>Feel free to contact me in any of the following ways!</p>
-        <p>Mobile: <a href="tel:+4672542032">072 542 20 32</a></p>
-        <p>Email: <a href="mailto:mogrenandrea@gmail.com">mogrenandrea@gmail.com</a></p>
+        <p class="txt-center">Feel free to contact me in any of the following ways!</p>
+        <p class="txt-center">Mobile: <a href="tel:+4672542032">072 542 20 32</a></p>
+        <p class="txt-center">Email: <a href="mailto:mogrenandrea@gmail.com">mogrenandrea@gmail.com</a></p>
         <div class="logo">
           <a href="https://www.linkedin.com/in/andrea-mogren-146053a5"><img src="../assets/images/linkedin.png" alt="LinkedIn Logo"/></a>
           <a href="https://github.com/andreamogren"><img src="../assets/images/Octocat.png" alt="GitHub Logo"/></a>
@@ -90,6 +90,8 @@
 </template>
 
 <script>
+import Chart from 'chart.js';
+
 export default {
   name: 'HelloWorld',
   data() {
@@ -118,19 +120,11 @@ export default {
         this.$refs.nav.style.backgroundColor = "#FF0000";
       }
     },
-    getScrollPosition() {
-      console.log("hero ", this.$refs.hero.offsetTop);
-      console.log("skills ", this.$refs.skills.offsetTop);
-      console.log("background ",this.$refs.background.offsetTop);
-      console.log("who ",this.$refs.who.offsetTop);
-      console.log("contact ",this.$refs.contact.offsetTop);
-    },
   },
   computed: {
   },
   mounted() {
       window.addEventListener('scroll', this.updateScroll);
-      this.getScrollPosition();
   },
 };
 
@@ -194,12 +188,7 @@ footer {
   color: #FFF;
 }
 
-#hello {
-}
-
 #hero {
-  //background: linear-gradient(0.25turn, #FEEF56, #FF69B4);
-  //background: linear-gradient(0.25turn, @violet, #FF69B4);
   font-family: 'Poppins', sans-serif;
   margin: 0 auto;
 
@@ -259,13 +248,21 @@ footer {
 }
 
 .logo {
-  //margin: 0 auto;
+  margin: 0 auto;
   width: 14rem;
 
   img {
     padding: 1rem;
     width: 5rem;
   }
+}
+
+p.txt-center {
+  text-align: center;
+}
+
+.no-margin-bottom {
+  margin-bottom: 0;
 }
 
 /*** Background video CSS ***/
