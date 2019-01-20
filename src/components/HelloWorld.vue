@@ -1,12 +1,12 @@
 <template>
     <div class="hello">
       <header>
-        <nav ref="nav"> <!-- :class="{violet: scrollPosition > 60, blue: scrollPosition > 1932}" -->
-          <a href="#hero" @click="this.violetHeading">Top</a>
-          <a href="#skills" @click="blueHeading">Skills</a>
-          <a href="#background" @click="greenHeading">Background</a>
-          <a href="#who" @click="orangeHeading">Who am I?</a>
-          <a href="#contact" @click="this.redHeading">Contact</a>
+        <nav ref="nav">
+          <a href="#hero">Top</a>
+          <a href="#skills">Skills</a>
+          <a href="#background">Background</a>
+          <a href="#who">Who am I?</a>
+          <a href="#contact">Contact</a>
         </nav>
       </header>
       <main>
@@ -30,12 +30,8 @@
         </div>
         <p>I'm Andrea, a front-end developer (aspsiring to become fullstack) and Hyper Island graduate. How nice of you to stop by! This portfolio is built in Vue.js, and I am working on constantly developing it and adding new things.</p>
         <h1 id="skills" ref="skills" class="blue">My skills</h1>
-        <p>Vue.js, HTML, CSS, JavaScript, Less, CMS, Git, Terminal, MongoDB, Node, Chrome dev tools </p>
-        <p>  beginner
-          elementary
-          intermediate
-          advanced
-          expert</p>
+        <h3 class="center-h3">1 - Beginner, 2 - Elementary, 3 - Intermediate, 4 - Advanced, 5 - Expert</h3>
+          <canvas id="skills-chart"></canvas>
         <h1 id ="background" ref="background" class="green">Background</h1>
         <h3>Currently</h3>
         <strong><p class="no-margin-bottom">2018 - </p></strong>
@@ -71,13 +67,12 @@
           <iframe src="https://giphy.com/embed/26tn33aiTi1jkl6H6" width="480" height="269" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="http://giphy.com/gifs/screen-monitor-closeup-26tn33aiTi1jkl6H6"></a></p>
         </div>
         <div class="gif">
-          <iframe src="https://giphy.com/embed/49B5kpre24clW" width="480" height="576" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="http://giphy.com/gifs/49B5kpre24clW"</a></p>
+          <iframe src="https://giphy.com/embed/49B5kpre24clW" width="480" height="576" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="http://giphy.com/gifs/49B5kpre24clW"></a></p>
         </div>
         <h1 id="contact" ref="contact" class="red">Contact</h1>
         <p class="txt-center">Feel free to contact me in any of the following ways!</p>
-        <p class="txt-center">Mobile: <a href="tel:+4672542032">072 542 20 32</a></p>
-        <p class="txt-center">Email: <a href="mailto:mogrenandrea@gmail.com">mogrenandrea@gmail.com</a></p>
         <div class="logo">
+          <a href="mailto:mogrenandrea@gmail.com"><img src="../assets/images/email.svg" alt="Email icon"/></a>
           <a href="https://www.linkedin.com/in/andrea-mogren-146053a5"><img src="../assets/images/linkedin.png" alt="LinkedIn Logo"/></a>
           <a href="https://github.com/andreamogren"><img src="../assets/images/Octocat.png" alt="GitHub Logo"/></a>
         </div>
@@ -91,12 +86,14 @@
 
 <script>
 import Chart from 'chart.js';
+import skillsChartData from '../chart-data.js';
 
 export default {
   name: 'HelloWorld',
   data() {
     return {
       scrollPosition: null,
+      skillsChartData: skillsChartData,
     };
   },
   watch: {
@@ -120,11 +117,20 @@ export default {
         this.$refs.nav.style.backgroundColor = "#FF0000";
       }
     },
+    createChart(chartId, chartData) {
+      const ctx = document.getElementById(chartId);
+      const myChart = new Chart(ctx, {
+        type: chartData.type,
+        data: chartData.data,
+        options: chartData.options,
+      });
+    }
   },
   computed: {
   },
   mounted() {
       window.addEventListener('scroll', this.updateScroll);
+      this.createChart('skills-chart', this.skillsChartData);
   },
 };
 
@@ -147,8 +153,8 @@ h1, h3, p {
 h1 {
   text-align: center;
   font-family: 'Permanent Marker', cursive;
-  font-size: 3rem;
-  margin-bottom: 1rem;
+  font-size: 4rem;
+  margin-bottom: 2rem;
   margin-top: 5rem;
 }
 
@@ -247,9 +253,14 @@ footer {
   }
 }
 
+.center-h3 {
+  text-align: center;
+}
+
 .logo {
   margin: 0 auto;
-  width: 14rem;
+  width: 23rem;
+  padding-bottom: 5rem;
 
   img {
     padding: 1rem;
@@ -285,7 +296,7 @@ p.txt-center {
     height: auto;
     min-width: 100%;
     min-height: 100%;
-	  transform: translate(-50%, -50%);*/
+    transform: translate(-50%, -50%);*/
     width: 100vw;
     //height: 100vh;
     border: none;
