@@ -24,19 +24,9 @@ html {
 
 body {
   margin: 0;
-  //background-color: @bg;
   margin-top: 60px;
-  //color: #000;
   font-family: 'Montserrat', sans-serif;
-  background-color: rgb(25, 27, 30);
-  color: rgb(232, 231, 227);
-
-
-/*  body {
-    background: linear-gradient(0.25turn, #FEEF56, #FF69B4);
-    font-family: 'Poppins', sans-serif;
-    margin: 0 auto;
-    color: #FFF;
-  }*/
+  background-color: @bg;
+  color: @body-text;
 }
 </style>

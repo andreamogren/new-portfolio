@@ -7,6 +7,7 @@
           <a href="#background">Background</a>
           <a href="#who">Who am I?</a>
           <a href="#contact">Contact</a>
+          <p>BETA - Version 0.1</p>
         </nav>
       </header>
       <main>
@@ -184,6 +185,15 @@ nav {
     padding: 1rem;
     text-decoration: none;
     font-size: 1.3rem;
+  }
+
+  p {
+    position: absolute;
+    right: 6rem;
+    top: 1.5rem;
+    background-color: #000;
+    padding: 0.5rem 1rem;
+
   }
 }
 
