@@ -1,6 +1,6 @@
 <template>
 <div class="hello">
-  <div id="navbar" class="bottom">
+  <div id="navbar" ref="navbar" class="bottom">
     <a href="#intro">Intro</a>
     <a href="#skills">Skills</a>
     <a href="#background">Background</a>
@@ -11,10 +11,9 @@
     <div class="landing--title">
       <p>Andrea Mogren</p>
       <h1>front end developer.</h1>
-      <button class="primary-btn">Read more about me</button>
+      <!-- <button class="primary-btn">Read more about me</button> -->
       <div class="landing--line"></div>
     </div>
-
   </div>
 
   <section class="light-section" id="intro">
@@ -24,6 +23,21 @@
       <p><a href="https://giphy.com/gifs/dBgUdHwD9kEQU"></a></p>
     </div>
     <p>I'm Andrea, a front-end developer (aspsiring to become fullstack) and Hyper Island graduate. How nice of you to stop by! This portfolio is built in Vue.js, and I am working on constantly developing it and adding new things.</p>
+    <h3>🚧 Please note! 🚧</h3>
+    <p style="margin-top: 0;">This portfolio is not completed yet, here is a list of the things I have done and will do:</p>
+    <ul>
+      <li><s>🔧 Set up a project in Vue</s></li>
+      <li><s>👶 Start creating a first version</s></li>
+      <li><s>📚 Learn how to build in Vue and how to host the site online</s></li>
+      <li><s>🚀 Host everything to a GitHub pages branch</s></li>
+      <li><s>🌺 Implement new theme (lavender)</s></li>
+      <li>⚓ Make link click scroll smoother</li>
+      <li>🦸 Make hero headings more readable</li>
+      <li>📱 Adjust design to mobile/tablet (include hamburger menu)</li>
+      <li>📈 Update the My skills chart to show things I've learned</li>
+      <li>🐶 New content in Who am I section</li>
+      <li>👾 If I make games in Vue, add these to portfolio</li>
+    </ul>
   </section>
   <section id="skills" class="dark-section">
     <h1>My skills</h1>
@@ -64,21 +78,27 @@
     <h1>Who am I?</h1>
     <p>As a person, I am happy, organized, calm and I love all sorts of games (pc, video, board game, you name it). I also love dogs, creating things (everything from web sites to scarfs), languages and tea. Especially green tea. 🍵</p>
     <h3>Me in GIFs:</h3>
-    <div class="gif">
-      <iframe src="https://giphy.com/embed/dBgUdHwD9kEQU" width="240" height="426" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
-      <p><a href="https://giphy.com/gifs/dBgUdHwD9kEQU"></a></p>
-    </div>
-    <div class="gif">
-      <iframe src="https://giphy.com/embed/13mLwGra9bNEKQ" width="240" height="152"></iframe>
-    </div>
-    <div class="gif">
-      <iframe src="https://giphy.com/embed/26tn33aiTi1jkl6H6" width="240" height="115" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
-      <p><a href="http://giphy.com/gifs/screen-monitor-closeup-26tn33aiTi1jkl6H6"></a></p>
-    </div>
-    <div class="gif">
-      <iframe src="https://giphy.com/embed/49B5kpre24clW" width="240" height="288" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
-      <p><a href="http://giphy.com/gifs/49B5kpre24clW"></a></p>
-    </div>
+    <div class="gifs">
+      <div class="gif-container">
+        <div class="gif">
+          <iframe src="https://giphy.com/embed/dBgUdHwD9kEQU" width="240" height="426" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+          <p><a href="https://giphy.com/gifs/dBgUdHwD9kEQU"></a></p>
+        </div>
+      </div>
+      <div class="gif-container">
+        <div class="gif">
+          <iframe src="https://giphy.com/embed/13mLwGra9bNEKQ" width="240" height="152"></iframe>
+        </div>
+        <!-- <div class="gif">
+          <iframe src="https://giphy.com/embed/26tn33aiTi1jkl6H6" width="240" height="115" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+          <p><a href="http://giphy.com/gifs/screen-monitor-closeup-26tn33aiTi1jkl6H6"></a></p>
+        </div> -->
+        <div class="gif">
+          <iframe src="https://giphy.com/embed/49B5kpre24clW" width="240" height="288" style="transform: translateY(-5px);" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+          <p><a href="http://giphy.com/gifs/49B5kpre24clW"></a></p>
+        </div>
+      </div>
+  </div>
   </section>
   <section class="light-section">
     <h1 id="contact">Contact</h1>
@@ -91,15 +111,7 @@
   </section>
 
   <footer>
-    <div class="footer--social">
-      <a href="https://instagram.com/julieparkim" target="_blank"><i class="fab fa-instagram" style="font-size: 1.2em"></i></a>
-      <a href="https://twitter.com/juliepark" target="_blank"><i class="fab fa-twitter"></i></a>
-      <a href=""><i class="far fa-envelope"></i></a>
-    </div>
-    <div class="footer--bottom">
-      <p class="footer--text">Andrea Mogren 2019
-        <!-- JS function later --> | &amp; All GIFs belong to Giphy</a></p>
-    </div>
+      <p>Andrea Mogren 2019 <!-- JS function later --> | All GIFs belong to Giphy</p>
   </footer>
 </div>
 </template>
@@ -114,27 +126,13 @@ export default {
     return {
       scrollPosition: null,
       skillsChartData: skillsChartData,
+      initialNavPosition: null,
+
     };
   },
   watch: {},
   props: {},
   methods: {
-    /* https://stackoverflow.com/questions/41095814/vuejs-how-to-dynamically-change-a-css-class-after-a-scroll-position :D */
-    updateScroll() {
-      this.scrollPosition = window.scrollY;
-
-      /*if (this.scrollPosition < 60) {
-        this.$refs.nav.style.backgroundColor = "#8B00FF";
-      } else if (this.scrollPosition > 1932 && this.scrollPosition < 2140) {
-        this.$refs.nav.style.backgroundColor = "#0000FF";
-      } else if (this.scrollPosition > 2140 && this.scrollPosition < 3116) {
-        this.$refs.nav.style.backgroundColor = "#00FF00";
-      } else if (this.scrollPosition > 3116 && this.scrollPosition < 5410) {
-        this.$refs.nav.style.backgroundColor = "#FF7F00";
-      } else if (this.scrollPosition > 5410) {
-        this.$refs.nav.style.backgroundColor = "#FF0000";
-      }*/
-    },
     createChart(chartId, chartData) {
       const ctx = document.getElementById(chartId);
       const myChart = new Chart(ctx, {
@@ -142,12 +140,21 @@ export default {
         data: chartData.data,
         options: chartData.options,
       });
+    },
+    stickyFunction() {
+      this.scrollPosition = window.scrollY;
+      if (this.scrollPosition >= this.initialNavPosition) {
+        this.$refs.navbar.classList.add("sticky")
+      } else {
+        this.$refs.navbar.classList.remove("sticky");
+      }
     }
   },
   computed: {},
   mounted() {
-    window.addEventListener('scroll', this.updateScroll);
+    this.initialNavPosition = this.$refs.navbar.offsetTop;
     this.createChart('skills-chart', this.skillsChartData);
+    window.addEventListener('scroll', this.stickyFunction);
   },
 };
 </script>
@@ -161,7 +168,7 @@ html {
 
 body {
     margin: 0;
-    background: @light;
+    background: @lavender;
     overflow-x: hidden;
     font-family:  "Open Sans", sans-serif;
     color: @darkgray;
@@ -171,6 +178,10 @@ h1 {
     text-align: center;
     font-family: 'Permanent Marker', cursive;
     font-size: 4rem;
+
+    @media (max-width: 768px) {
+      font-size: 3rem;
+    }
 }
 
 a {
@@ -182,18 +193,33 @@ strong {
     font-weight: 700;
 }
 
-p {
+h1, h3, p, ul {
+    max-width: 900px;
+    margin: 0 auto;
+    color: @darkgray;
+}
+
+p, h3, ul {
+  font-family: @sans;
+}
+
+p, ul {
     line-height: 1.5rem;
     margin-bottom: 1rem;
+    margin-top: 0;
+} 
+
+ul {
+  list-style-type: none;
 }
 
 #navbar {
-    background: @light;
+    background: @lavender;
     height: 20px;
     padding: 35px 45px;
     overflow: hidden;
     text-align: center;
-    width: 100%;
+    width: 100vw;
 
     a {
         font-family: @sans;
@@ -201,6 +227,10 @@ p {
         font-size: 0.7em;
         padding-right: 10%;
         text-transform: uppercase;
+    }
+
+    @media (max-width: 768px) {
+      width: 80vw;
     }
 }
 
@@ -242,11 +272,11 @@ p {
         font-family: @sans;
         text-transform: uppercase;
         text-align: center;
-        color: @light;
+        color: @lavender;
         font-size: 2em;
         letter-spacing: 0.3em;
         font-weight: 700;
-        text-shadow: 2px 2px 2px rgba(@dark, 0.4);
+        text-shadow: 2px 2px 2px rgba(@darkest, 0.4);
     }
     h1 {
         margin: 0;
@@ -256,7 +286,7 @@ p {
         font-family: @serif;
         color: @white;
         font-size: 3em;
-        text-shadow: 2px 2px 2px rgba(@dark, 0.4);
+        text-shadow: 2px 2px 2px rgba(@darkest, 0.4);
     }
 }
 
@@ -267,7 +297,7 @@ p {
     text-transform: uppercase;
     font-family: @sans;
     letter-spacing: 4px;
-    background: @pink;
+    background: @dark;
     border-radius: 25px;
     font-weight: 100;
     color: @darkgray;
@@ -276,7 +306,7 @@ p {
     transition: @ease;
     &:hover {
         background: @darkgray;
-        color: @light;
+        color: @lavender;
         transition: @ease;
         transform: scale(1.05);
     }
@@ -291,40 +321,38 @@ p {
     position: absolute;
 }
 
-h1,
-h3,
-p {
-    max-width: 900px;
-    margin: 0 auto;
-    color: @darkgray;
-}
-
 section {
     padding: 4rem;
 }
 
 .light-section {
-    background: @cream;
+    background: @light;
 }
 
 .dark-section {
-    background: @dark;
+    background: @darkest;
+}
+
+#intro {
+  p {
+    margin-top: 1rem;
+  }
 }
 
 #background {
-    p {
-        margin-bottom: 1rem;
-    }
-
     .no-margin-bottom {
         margin-bottom: 0;
     }
 }
 
+#contact + p {
+    text-align: center;
+}
+
 .logo {
-    margin: 0 auto;
     width: 23rem;
     padding-bottom: 5rem;
+    margin: 0 auto;
 
     img {
         padding: 1rem;
@@ -332,50 +360,25 @@ section {
     }
 }
 
+.gifs {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+
+  @media (max-width: 768px){
+    flex-wrap: wrap;
+  }
+}
+
 footer {
-    height: 20vh;
-    background: @pink;
-    position: relative;
-    width: 100%;
-    text-align: center;
-}
-.footer--social {
-    height: 100px;
-    padding-top: 15px;
-    i {
-        padding: 30px;
-        color: @darkgray;
-        transition: @ease;
-        &:hover {
-            color: @darkgray;
-            transition: @ease;
-            transform: scale(1.3);
-        }
-    }
-}
-.footer--bottom {
-    width: 100%;
-    position: absolute;
-    height: 20%;
-    bottom: 0;
-}
-.footer--text {
-    font-family: @sans;
-    font-size: 0.5em;
-    color: @darkgray;
+    background: @dark;
+    width: 100vw;
+    min-height: 20vh;
+    font-size: 0.6rem;
     letter-spacing: 2px;
     text-transform: uppercase;
-    span {
-        color: @darkgray;
-    }
-    a {
-        font-family: @serif;
-        font-style: italic;
-        color: @darkgray;
-        &:hover {
-            background: @darkgray;
-            color: @darkgray;
-        }
-    }
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
 }
 </style>
