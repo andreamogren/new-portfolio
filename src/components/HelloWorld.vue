@@ -1,18 +1,17 @@
 <template>
 <div class="hello">
-  <div id="navbar" ref="navbar" class="bottom">
+  <div id="navbar" ref="navbar">
     <a href="#intro">Intro</a>
     <a href="#skills">Skills</a>
     <a href="#background">Background</a>
     <a href="#who">Who am I?</a>
   </div>
 
-  <div class="landing--container">
-    <div class="landing--title">
+  <div class="hero-background">
+    <div class="hero-title">
       <p>Andrea Mogren</p>
-      <h1>front end developer.</h1>
-      <!-- <button class="primary-btn">Read more about me</button> -->
-      <div class="landing--line"></div>
+      <h1>front end developer</h1>
+      <div class="hero-white-line"></div>
     </div>
   </div>
 
@@ -127,7 +126,6 @@ export default {
       scrollPosition: null,
       skillsChartData: skillsChartData,
       initialNavPosition: null,
-
     };
   },
   watch: {},
@@ -141,17 +139,26 @@ export default {
         options: chartData.options,
       });
     },
+    addBottom (){
+      if (window.innerWidth > 900) {
+        this.$refs.navbar.classList.add("bottom")
+        console.log(this.desktopScreen); 
+      }
+    }, 
     stickyFunction() {
-      this.scrollPosition = window.scrollY;
-      if (this.scrollPosition >= this.initialNavPosition) {
-        this.$refs.navbar.classList.add("sticky")
-      } else {
-        this.$refs.navbar.classList.remove("sticky");
+      if (window.innerWidth > 900) {
+        this.scrollPosition = window.scrollY;
+        if (this.scrollPosition >= this.initialNavPosition) {
+          this.$refs.navbar.classList.add("sticky")
+        } else {
+          this.$refs.navbar.classList.remove("sticky");
+        }
       }
     }
   },
   computed: {},
   mounted() {
+    this.addBottom(); 
     this.initialNavPosition = this.$refs.navbar.offsetTop;
     this.createChart('skills-chart', this.skillsChartData);
     window.addEventListener('scroll', this.stickyFunction);
@@ -207,31 +214,47 @@ p, ul {
     line-height: 1.5rem;
     margin-bottom: 1rem;
     margin-top: 0;
-} 
+}
 
 ul {
   list-style-type: none;
 }
 
 #navbar {
-    background: @lavender;
-    height: 20px;
+  background: @lavender;  
+  a {
+    font-family: @sans;
+    //letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  @media (min-width: 1024px) {
     padding: 35px 45px;
-    overflow: hidden;
-    text-align: center;
-    width: 100vw;
+    width: 100vw; 
+    height: 20px;
+    text-align: center; 
+    a {
+      font-size: 0.7em; 
+      padding-right: 10%; 
+    }
+  }
+
+  @media (max-width: 768px) {
+    width: 100%; 
+    position: fixed; 
+    z-index: 10; 
+    display: flex;
+    flex-wrap: wrap; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
 
     a {
-        font-family: @sans;
-        letter-spacing: 3px;
-        font-size: 0.7em;
-        padding-right: 10%;
-        text-transform: uppercase;
+      padding: 2rem; 
     }
 
-    @media (max-width: 768px) {
-      width: 80vw;
-    }
+
+
+  }
 }
 
 .bottom {
@@ -251,7 +274,7 @@ ul {
     top: 0;
 }
 
-.landing--container {
+.hero-background {
     position: relative;
     margin: 0;
     background-image: url("https://images.pexels.com/photos/164470/pexels-photo-164470.jpeg?auto=format%2Ccompress&cs=tinysrgb&dpr=2&h=650&w=940");
@@ -263,7 +286,7 @@ ul {
     height: 95vh;
 }
 
-.landing--title {
+.hero-title {
     position: absolute;
     width: 100%;
     top: 40%;
@@ -290,29 +313,7 @@ ul {
     }
 }
 
-.primary-btn {
-    padding: 20px;
-    outline: 0;
-    border: none;
-    text-transform: uppercase;
-    font-family: @sans;
-    letter-spacing: 4px;
-    background: @dark;
-    border-radius: 25px;
-    font-weight: 100;
-    color: @darkgray;
-    font-size: 0.6em;
-    cursor: pointer;
-    transition: @ease;
-    &:hover {
-        background: @darkgray;
-        color: @lavender;
-        transition: @ease;
-        transform: scale(1.05);
-    }
-}
-
-.landing--line {
+.hero-white-line {
     background: @white;
     width: 8%;
     left: 46%;
