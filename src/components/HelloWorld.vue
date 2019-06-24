@@ -1,5 +1,8 @@
 <template>
 <div class="hello">
+  <div id="mobile-header">
+    <button ref="toggleNav" @click="toggleNav()">Close/open</button>
+  </div>
   <div id="navbar" ref="navbar">
     <a href="#intro">Intro</a>
     <a href="#skills">Skills</a>
@@ -126,6 +129,7 @@ export default {
       scrollPosition: null,
       skillsChartData: skillsChartData,
       initialNavPosition: null,
+      menuOpen: false, 
     };
   },
   watch: {},
@@ -141,22 +145,31 @@ export default {
     },
     addBottom (){
       if (window.innerWidth > 900) {
-        this.$refs.navbar.classList.add("bottom")
-        console.log(this.desktopScreen); 
+        this.$refs.navbar.classList.add("bottom"); 
       }
     }, 
     stickyFunction() {
       if (window.innerWidth > 900) {
         this.scrollPosition = window.scrollY;
         if (this.scrollPosition >= this.initialNavPosition) {
-          this.$refs.navbar.classList.add("sticky")
+          this.$refs.navbar.classList.add("sticky"); 
         } else {
           this.$refs.navbar.classList.remove("sticky");
         }
       }
-    }
+    },
+    toggleNav() {
+      // if (this.menuOpen = false) {
+      //   this.menuOpen = true; 
+      //   console.log("honk i am run", this.menuOpen); 
+      // } else if (this.menuOpen = true) {
+      //   this.menuOpen = false; 
+      //   console.log("2nd if", this.menuOpen); 
+      // }
+    } 
   },
-  computed: {},
+  computed: {
+  },
   mounted() {
     this.addBottom(); 
     this.initialNavPosition = this.$refs.navbar.offsetTop;
@@ -224,7 +237,6 @@ ul {
   background: @lavender;  
   a {
     font-family: @sans;
-    //letter-spacing: 3px;
     text-transform: uppercase;
   }
   @media (min-width: 1024px) {
@@ -247,8 +259,11 @@ ul {
     flex-direction: column; 
     align-items: center; 
     justify-content: center; 
+    height: 0; 
+    //height: 332px; 
 
     a {
+      display: none; 
       padding: 2rem; 
     }
 
