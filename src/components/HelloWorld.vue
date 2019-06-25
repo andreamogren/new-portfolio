@@ -3,7 +3,7 @@
   <div id="mobile-header">
     <button ref="toggleNav" @click="toggleNav()">Close/open</button>
   </div>
-  <div id="navbar" ref="navbar">
+  <div id="navbar" ref="navbar" :class="{ open: this.isOpen }">
     <a href="#intro">Intro</a>
     <a href="#skills">Skills</a>
     <a href="#background">Background</a>
@@ -129,7 +129,7 @@ export default {
       scrollPosition: null,
       skillsChartData: skillsChartData,
       initialNavPosition: null,
-      menuOpen: false, 
+      isOpen: false, 
     };
   },
   watch: {},
@@ -159,13 +159,7 @@ export default {
       }
     },
     toggleNav() {
-      // if (this.menuOpen = false) {
-      //   this.menuOpen = true; 
-      //   console.log("honk i am run", this.menuOpen); 
-      // } else if (this.menuOpen = true) {
-      //   this.menuOpen = false; 
-      //   console.log("2nd if", this.menuOpen); 
-      // }
+      this.isOpen = !this.isOpen; 
     } 
   },
   computed: {
