@@ -1,29 +1,5 @@
 # new-portfolio
+Welcome to my new portfolio :) It's still work in progress, but feel free to have a look around! 
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+##Instructions 
+To run these files locally, git clone them and then run 'npm install'. 
