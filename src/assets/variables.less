@@ -1,9 +1,9 @@
 /* Colors */
 @white: #ecf8f8;
-@lavender: #e6e6fa; //light
-@light: #d1d1f6; //cream
-@dark: #bcbcf2; //pink
-@darkest: #a6a6ed; //dark
+@lavender: #e6e6fa; 
+@light: #d1d1f6; 
+@dark: #bcbcf2; 
+@darkest: #a6a6ed; 
 @darkgray: #2c2c2c;
 
 /*Fonts*/
@@ -12,3 +12,29 @@
 
 /*Misc*/
 @ease: all 0.4s ease;
+
+/* Breakpoints */
+.for-phone-only(@content) {
+    @media (max-width: 599px) { @content(); }
+}
+.for-tablet-portrait-up(@content) {
+    @media (min-width: 600px) { @content(); }
+}
+.for-tablet-portrait-only(@content) {
+    @media (min-width: 600px) and (max-width: 899px) { @content(); }
+}
+.for-tablet-landscape-up(@content) {
+    @media (min-width: 900px) { @content(); }
+}
+.for-tablet-landscape-only(@content) {
+    @media (min-width: 900px) and (max-width: 1199px) { @content(); }
+}
+.for-desktop-up(@content) {
+    @media (min-width: 1200px) { @content(); }
+}
+.for-desktop-only(@content) {
+    @media (min-width: 1200px) and (max-width: 1799px) { @content(); }
+}
+.for-big-desktop-up(@content) {
+    @media (min-width: 1800px) { @content(); }
+}

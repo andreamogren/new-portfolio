@@ -5,10 +5,10 @@ export const skillsChartData = {
     datasets: [
       {
         label: 'Skill level 1 - 5',
-        data: [2, 3, 4, 3, 3, 2, 2, 1, 1, 1],
+        data: [3, 3, 4, 3, 3, 2, 2, 1, 1, 1],
         //Beginner, elementary, intermediate, advanced, expert
         backgroundColor: [
-          'rgba(139,0,255,.5)', // Blue
+          'rgba(139,0,255,.5)',
           'rgba(139,0,255,.5)',
           'rgba(139,0,255,.5)',
           'rgba(139,0,255,.5)',
@@ -37,7 +37,7 @@ export const skillsChartData = {
     legend: {
       display: true,
           labels: {
-              fontColor: '#FFF',
+              fontColor: '#000',
           }
       },
       scales: {

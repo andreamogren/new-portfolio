@@ -1,22 +1,23 @@
 <template>
   <div id="app">
-    <HelloWorld/>
+    <PortfolioStart/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import PortfolioStart from './components/PortfolioStart.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    PortfolioStart
   }
 }
 </script>
 
 <style lang="less">
-  body {
-    margin: 0; 
+  #app { 
+    //Base font for REM 
+    font-size: 16px; 
   }
 </style>
