@@ -140,6 +140,7 @@ export default {
   },
   methods: {
     createChart(chartId, chartData) {
+      // eslint-disable-next-line 
       const ctx = document.getElementById(chartId);
       const myChart = new Chart(ctx, {
         type: chartData.type,
