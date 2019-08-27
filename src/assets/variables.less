@@ -29,6 +29,9 @@
 .for-tablet-landscape-only(@content) {
     @media (min-width: 900px) and (max-width: 1199px) { @content(); }
 }
+.up-to-desktop(@content) {
+    @media (max-width: 1024px) { @content(); }
+}
 .for-desktop-up(@content) {
     @media (min-width: 1200px) { @content(); }
 }

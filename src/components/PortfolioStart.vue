@@ -1,7 +1,7 @@
 <template>
 <div class="hello">
   <div id="mobile-header">
-    <p>{ Andrea Mogren }</p><button ref="toggleNav" @click="toggleNav()"><img src="../assets/images/hamburger.png" alt="Hamburger"/></button>
+    <p>{ Andrea Mogren }</p><button ref="toggleNav" @click="isOpen = !isOpen"><img src="../assets/images/hamburger.png" alt="Hamburger"/></button>
   </div>
   <div id="navbar" ref="navbar" :class="{ open: this.isOpen }">
     <nav>
@@ -27,7 +27,7 @@
       <p><a href="https://giphy.com/gifs/dBgUdHwD9kEQU"></a></p>
     </div>
     <p>I'm Andrea, a front-end developer (aspsiring to become fullstack) and Hyper Island graduate. How nice of you to stop by! This portfolio is built in Vue.js, and I am working on constantly developing it and adding new things.</p>
-    <h2>🚧 Please note! 🚧</h2>
+    <h2>🚧 To-do list: 🚧</h2>
     <p style="margin-top: 0;">This portfolio is not completed yet, here is a list of the things I have done and will do:</p>
     <ul class="no-list-style">
       <li><s>🔧 Set up a project in Vue</s></li>
@@ -36,15 +36,15 @@
       <li><s>🚀 Host everything to a GitHub pages branch</s></li>
       <li><s>🌺 Implement new theme (lavender)</s></li>
       <li><s>📈 Update the My skills chart to show things I've learned</s></li>
-      <li>📱 Adjust design to mobile/tablet (include hamburger menu)</li>
+      <li><s>📱 Adjust design to mobile/tablet (include hamburger menu)</s></li>
+      <li><s>🦸 Make hero headings more readable</s></li>
+      <li>🍔 Make hamburger menu easier to close</li>
       <li>⚓ Make link click scroll smoother</li>
-      <li>🦸 Make hero headings more readable</li>
-      <li>🎓 Add links to Treehouse Fullstack Techdegree projects that I've completed</li>
+      <li>🎓 Add links to Fullstack course projects that I've completed</li>
       <li>🐶 New content in Who am I section</li>
-      <li>👾 If I make games in Vue, add these to portfolio</li>
     </ul>
   </section>
-  <section id="skills" class="dark-section">
+  <section id="skills" class="dark-section hide-mobile">
     <h1>My skills</h1>
     <h2 class="center-h2">1 - Beginner, 2 - Elementary, 3 - Intermediate, 4 - Advanced, 5 - Expert</h2>
     <canvas id="skills-chart"></canvas>
@@ -140,8 +140,8 @@ export default {
   },
   methods: {
     createChart(chartId, chartData) {
-      // eslint-disable-next-line 
       const ctx = document.getElementById(chartId);
+      // eslint-disable-next-line 
       const myChart = new Chart(ctx, {
         type: chartData.type,
         data: chartData.data,
@@ -164,9 +164,6 @@ export default {
         }
       }
     },
-    toggleNav() {
-      this.isOpen = !this.isOpen; 
-    } 
   },
   computed: {
   },
@@ -218,12 +215,18 @@ p, ul {
     margin-top: 0;
 }
 
+ul {
+  .up-to-desktop({
+    padding-left: 0; 
+  }); 
+}
+
 h2 {
   margin-bottom: 1rem; 
 }
 
 .no-list-style {
-  list-style-type: none; 
+  list-style-type: none;  
 }
 
 #navbar {
@@ -250,7 +253,7 @@ h2 {
     }
   }); 
 
-  .for-phone-only({
+  .up-to-desktop({
       width: 100%;  
       top: 60px; 
       position: fixed; 
@@ -271,15 +274,14 @@ h2 {
       }
 
       a {
-        width: 100%; 
         display: block; 
         text-align: center; 
-        padding: 2rem; 
+        padding: 1rem 0; 
         border-bottom: 1px solid @dark; 
       }
 
       &.open {
-        height: 332px; 
+        height: 208px; 
 
         nav {
           display: block; 
@@ -353,14 +355,16 @@ h2 {
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover; 
     width: 100%;
     height: 95vh;
 }
 
 .hero-title {
     position: absolute;
-    width: 100%;
+    padding: 2rem;
+    border-radius: 3px; 
+    background-color: rgba(82, 31, 127, 0.7); 
     top: 50%;
     left: 50%; 
     transform: translate(-50%, -50%); 
@@ -385,6 +389,13 @@ h2 {
         font-size: 3em;
         text-shadow: 2px 2px 2px rgba(@darkest, 0.4);
     }
+
+    .up-to-desktop({
+      h1 {
+        line-height: 3rem; 
+        padding-top: 1rem;
+      }
+    }); 
 }
 
 .hero-white-line {
@@ -398,6 +409,14 @@ h2 {
 
 section {
     padding: 4rem;
+
+    .up-to-desktop({
+      padding: 2rem 1rem;
+      
+      &.hide-mobile {
+        display: none;
+      }
+    }); 
 }
 
 .light-section {
@@ -431,11 +450,11 @@ section {
 
     img {
         padding: 1rem;
-        width: 5rem;
+        max-width: 5rem;
     }
 
-    .for-phone-only({
-      width: 100%; 
+    .up-to-desktop({
+      
     }); 
 }
 
@@ -444,9 +463,9 @@ section {
   display: flex;
   justify-content: center;
 
-  @media (max-width: 768px){
+.up-to-desktop({
     flex-wrap: wrap;
-  }
+  }); 
 
   .gif-container {
     .gif:nth-of-type(2) {
@@ -465,5 +484,9 @@ footer {
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
+
+    .up-to-desktop({
+      text-align: center; 
+    }); 
 }
 </style>
