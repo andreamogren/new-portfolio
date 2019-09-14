@@ -11,7 +11,9 @@
         <a href="#intro">Intro</a>
         <a href="#skills">Skills</a>
         <a href="#background">Background</a>
+        <a href="#projects">Projects</a>
         <a href="#who">Who am I?</a>
+        <a href="#contact">Contact</a>
       </nav>
     </div>
 
@@ -358,7 +360,7 @@ h2 {
       wrap; flex-direction: column; align-items: center; justify-content: center;
       height: 0; width: 100%; box-sizing: border-box; transition: 0.3s; nav {width:
       100%; display: none;} a {display: block; text-align: center; padding: 1rem
-      0; border-bottom: 1px solid @dark;} &.open {height: 208px; nav {display: block;}}}
+      0; border-bottom: 1px solid @dark;} &.open {height: 313px; nav {display: block;}}}
   );
 }
 
