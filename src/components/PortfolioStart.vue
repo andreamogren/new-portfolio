@@ -2,18 +2,18 @@
   <div class="hello">
     <div id="mobile-header">
       <p>{ Andrea Mogren }</p>
-      <button ref="toggleNav" @click="isOpen = !isOpen">
+      <button ref="toggleNav" @click="theMethod()">
         <img src="../assets/images/hamburger.png" alt="Hamburger" />
       </button>
     </div>
     <div id="navbar" ref="navbar" :class="{ open: this.isOpen }">
       <nav>
-        <a href="#intro">Intro</a>
-        <a href="#skills">Skills</a>
-        <a href="#background">Background</a>
-        <a href="#projects">Projects</a>
-        <a href="#who">Who am I?</a>
-        <a href="#contact">Contact</a>
+        <a href="#intro" @click="theMethod()" v-smooth-scroll>Intro</a>
+        <a href="#skills" class="hide-mobile" @click="theMethod()" v-smooth-scroll>Skills</a>
+        <a href="#background" @click="theMethod()" v-smooth-scroll>Background</a>
+        <a href="#projects" @click="theMethod()" v-smooth-scroll>Projects</a>
+        <a href="#who" @click="theMethod()" v-smooth-scroll>Who am I?</a>
+        <a href="#contact" @click="theMethod()" v-smooth-scroll>Contact</a>
       </nav>
     </div>
 
@@ -28,14 +28,12 @@
     <section class="light-section" id="intro">
       <h1>Hi there!</h1>
       <div class="gif">
-        <iframe
-          src="https://giphy.com/embed/dBgUdHwD9kEQU"
+        <img
+          src="../assets/images/andrea.gif"
           width="240"
-          height="426"
-          frameborder="0"
-          class="giphy-embed"
-          allowfullscreen
-        ></iframe>
+          height="439"
+          alt="Andrea waving at the camera"
+        />
         <p>
           <a href="https://giphy.com/gifs/dBgUdHwD9kEQU"></a>
         </p>
@@ -70,10 +68,8 @@
         <li>
           <s>🦸 Make hero headings more readable</s>
         </li>
-        <li>🍔 Make hamburger menu easier to close</li>
-        <li>⚓ Make link click scroll smoother</li>
-        <li>🎓 Add links to Fullstack course projects that I've completed</li>
-        <li>🐶 New content in Who am I section</li>
+        <li><s>🍔 Make hamburger menu easier to close</s></li>
+        <li><s>⚓ Make link click scroll smoother</s></li>
       </ul>
     </section>
     <section id="skills" class="dark-section hide-mobile">
@@ -239,7 +235,7 @@ export default {
       scrollPosition: null,
       skillsChartData: skillsChartData,
       initialNavPosition: null,
-      isOpen: false
+      isOpen: false,
     };
   },
   methods: {
@@ -249,7 +245,7 @@ export default {
       const myChart = new Chart(ctx, {
         type: chartData.type,
         data: chartData.data,
-        options: chartData.options
+        options: chartData.options,
       });
     },
     addBottom() {
@@ -267,6 +263,9 @@ export default {
           this.$refs.navbar.classList.remove("sticky");
         }
       }
+    },
+    theMethod() {
+      this.isOpen = !this.isOpen;
     }
   },
   computed: {},
@@ -275,7 +274,7 @@ export default {
     this.initialNavPosition = this.$refs.navbar.offsetTop;
     this.createChart("skills-chart", this.skillsChartData);
     window.addEventListener("scroll", this.stickyFunction);
-  }
+  },
 };
 </script>
 
@@ -326,10 +325,6 @@ ul {
   margin-top: 0;
 }
 
-ul {
-  .up-to-desktop({padding-left: 0;});
-}
-
 h2 {
   margin-bottom: 1rem;
 }
@@ -348,6 +343,11 @@ h2 {
     font-family: @sans;
     text-transform: uppercase;
   }
+  a.hide-mobile {
+    .up-to-desktop(
+      { display: none; }
+    );
+  }
   //See assets/variables.less for mixins
   .for-desktop-up(
     {box-sizing: border-box; padding: 2rem; width: 100%; height: 82px; text-align:
@@ -360,10 +360,9 @@ h2 {
       wrap; flex-direction: column; align-items: center; justify-content: center;
       height: 0; width: 100%; box-sizing: border-box; transition: 0.3s; nav {width:
       100%; display: none;} a {display: block; text-align: center; padding: 1rem
-      0; border-bottom: 1px solid @dark;} &.open {height: 313px; nav {display: block;}}}
+      0; border-bottom: 1px solid @dark;} &.open {height: 260px; nav {display: block;}}}
   );
 }
-
 #mobile-header {
   position: fixed;
   top: 0;
@@ -374,51 +373,42 @@ h2 {
   justify-content: space-around;
   align-items: center;
   background-color: @light;
-
   p {
     margin: 0;
     font-size: 25px;
     font-weight: 700;
     font-family: "Permanent Marker", cursive;
   }
-
   button {
     height: 50px;
     width: 50px;
     background-color: transparent;
     border: none;
-
     img {
       width: 40px;
       height: 40px;
     }
   }
-
   .for-desktop-up({display: none;});
 }
-
 #skills-chart {
   max-width: 1000px;
   margin: auto;
 }
-
 .bottom {
   position: absolute;
   bottom: 0;
   z-index: 1;
   margin: 0;
 }
-
 .gif {
   max-width: 240px;
   margin: 0 auto;
 }
-
 .sticky {
   position: fixed;
   top: 0;
 }
-
 .hero-background {
   position: relative;
   margin: 0;
@@ -430,7 +420,6 @@ h2 {
   width: 100%;
   height: 95vh;
 }
-
 .hero-title {
   position: absolute;
   padding: 2rem;
@@ -460,10 +449,8 @@ h2 {
     font-size: 3em;
     text-shadow: 2px 2px 2px rgba(@darkest, 0.4);
   }
-
   .up-to-desktop({h1 {line-height: 3rem; padding-top: 1rem;}});
 }
-
 .hero-white-line {
   background: @white;
   width: 8%;
@@ -472,17 +459,13 @@ h2 {
   height: 7px;
   position: absolute;
 }
-
 section {
   padding: 4rem;
-
   .up-to-desktop({padding: 2rem 1rem; &.hide-mobile {display: none;}});
 }
-
 .light-section {
   background: @light;
 }
-
 .dark-section {
   background: @darkest;
 }
@@ -492,54 +475,42 @@ section {
     margin-top: 1rem;
   }
 }
-
 #background {
   .no-margin-bottom {
     margin-bottom: 0;
   }
 }
-
 #contact + p {
   text-align: center;
 }
-
 .logo {
   width: 23rem;
   padding-bottom: 5rem;
   margin: 0 auto;
-
   img {
     padding: 1rem;
     max-width: 5rem;
   }
-
-  .up-to-desktop({});
 }
-
 .gifs {
   margin: 0 auto;
   display: flex;
   justify-content: center;
-
   .up-to-desktop({flex-wrap: wrap;});
-
   .gif-container {
     .gif:nth-of-type(2) {
       transform: translateY(-5px);
     }
   }
 }
-
 .project-container {
   max-width: 1170px;
   margin: 0 auto;
   padding-top: 3rem;
-
   .project-link {
     max-width: 360px;
     margin: 0 auto;
     padding-bottom: 1rem;
-
     .link-text {
       visibility: hidden;
     }
@@ -555,34 +526,23 @@ section {
         width: 100%;
         height: 100%;
         transition: 0.3s;
-
         h3 {
           position: absolute;
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
         }
-
         &:hover {
           opacity: 1;
         }
       }
     }
-
-    .up-to-desktop({
-      max-width: 320px; 
-        .project-img {
-          img {
-            width: 320px;
-          } 
-          .project-cover {
-            opacity: 1;
-            }
-          }
-        });
+    .up-to-desktop(
+      {max-width: 320px; .project-img {img {width: 320px;} .project-cover {opacity:
+        1;}}}
+    );
   }
 }
-
 /* Bob effect from hover.css */
 @-webkit-keyframes hvr-bob {
   0% {
@@ -649,7 +609,6 @@ section {
   -webkit-animation-direction: normal, alternate;
   animation-direction: normal, alternate;
 }
-
 footer {
   background: @dark;
   width: 100%;
@@ -660,7 +619,6 @@ footer {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-
   .up-to-desktop({text-align: center;});
 }
 </style>
