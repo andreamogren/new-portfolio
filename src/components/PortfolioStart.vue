@@ -8,12 +8,12 @@
     </div>
     <div id="navbar" ref="navbar" :class="{ open: this.isOpen }">
       <nav>
-        <a href="#intro">Intro</a>
-        <a href="#skills">Skills</a>
-        <a href="#background">Background</a>
-        <a href="#projects">Projects</a>
-        <a href="#who">Who am I?</a>
-        <a href="#contact">Contact</a>
+        <a href="#intro" @click="theMethod()" v-smooth-scroll>Intro</a>
+        <a href="#skills" class="hide-mobile" @click="theMethod()" v-smooth-scroll>Skills</a>
+        <a href="#background" @click="theMethod()" v-smooth-scroll>Background</a>
+        <a href="#projects" @click="theMethod()" v-smooth-scroll>Projects</a>
+        <a href="#who" @click="theMethod()" v-smooth-scroll>Who am I?</a>
+        <a href="#contact" @click="theMethod()" v-smooth-scroll>Contact</a>
       </nav>
     </div>
 
@@ -68,10 +68,8 @@
         <li>
           <s>🦸 Make hero headings more readable</s>
         </li>
-        <li>🍔 Make hamburger menu easier to close</li>
-        <li>⚓ Make link click scroll smoother</li>
-        <li>🎓 Add links to Fullstack course projects that I've completed</li>
-        <li>🐶 New content in Who am I section</li>
+        <li><s>🍔 Make hamburger menu easier to close</s></li>
+        <li><s>⚓ Make link click scroll smoother</s></li>
       </ul>
     </section>
     <section id="skills" class="dark-section hide-mobile">
@@ -327,10 +325,6 @@ ul {
   margin-top: 0;
 }
 
-ul {
-  .up-to-desktop({padding-left: 0;});
-}
-
 h2 {
   margin-bottom: 1rem;
 }
@@ -349,6 +343,11 @@ h2 {
     font-family: @sans;
     text-transform: uppercase;
   }
+  a.hide-mobile {
+    .up-to-desktop(
+      { display: none; }
+    );
+  }
   //See assets/variables.less for mixins
   .for-desktop-up(
     {box-sizing: border-box; padding: 2rem; width: 100%; height: 82px; text-align:
@@ -361,7 +360,7 @@ h2 {
       wrap; flex-direction: column; align-items: center; justify-content: center;
       height: 0; width: 100%; box-sizing: border-box; transition: 0.3s; nav {width:
       100%; display: none;} a {display: block; text-align: center; padding: 1rem
-      0; border-bottom: 1px solid @dark;} &.open {height: 313px; nav {display: block;}}}
+      0; border-bottom: 1px solid @dark;} &.open {height: 260px; nav {display: block;}}}
   );
 }
 #mobile-header {
@@ -492,7 +491,6 @@ section {
     padding: 1rem;
     max-width: 5rem;
   }
-  .up-to-desktop({});
 }
 .gifs {
   margin: 0 auto;
